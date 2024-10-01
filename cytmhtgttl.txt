@@ -1,0 +1,4 @@
+discord.py
+python-dotenv
+-U discord.py[voice]
+pymongo
