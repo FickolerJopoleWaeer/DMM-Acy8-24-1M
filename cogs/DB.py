@@ -14,13 +14,58 @@ class Data(commands.Cog):
         print("Хранилища поплняются данными")
 
     cluster = MongoClient('mongodb://127.0.0.1:27089/') # подключаем БД
-    PlayerDB = cluster.shp.PlayerDB # Подключаем коллекции внутри базы данных shp
+    PlayerDB = cluster.Poker.PlayerDB # Подключаем коллекции внутри базы данных Poker (в ней будут коллекции: игроки и комнаты)
 
+# Проверка и создание индексов:
+    '''
+    def create_indexes(self):
+        existing_indexes = Data.users.index_information()
+        if "Баланс" not in existing_indexes: 
+            Data.users.create_index("Баланс") 
+        ...
+        if "Комбо" not in existing_indexes:
+            Data.users.create_index("Комбо")
+    '''
+# наверное через цикл или Case сделать лучше, НАПРИМЕР:
+    '''
+    def create_indexes(self):
+        # Список полей для индексации:
+        fields_to_index = ["Баланс", "Общая_ставка", ... , "Кол-во_побед", "Комбо"] # ТОЛЬКО ИЗ СПИСКА ИНДЕКСОВ НИЖЕ
+        # Получаем существующие индексы:
+        existing_indexes = Data.users.index_information()
+        # Проходим по полям и создаем индексы при необходимости:
+        for field in fields_to_index:
+            if field not in existing_indexes:
+                Data.users.create_index(field)
+    '''
+    # Данная версия хороша при выводе бота в массы. 
+    # Для стадии теста и разработки сойдёт вариант ниже:
+
+# Создаем индексы
+    def create_indexes(self):
+        Data.users.create_index("Баланс")           # Индекс по балансу
+        Data.users.create_index("Общая_ставка")     # Индекс по ставкам
+        Data.users.create_index("Общий_выигрыш")    # Индекс по выигрышам
+        Data.users.create_index("Кол-во_игр")       # Индекс по играм
+        Data.users.create_index("Кол-во_побед")     # Индекс по победам
+        Data.users.create_index("Комбо")            # Индекс по комбинациям
+
+# Значения полей по умолчанию
     def data_base(self, ID, Name):
         Player = {
-"id": ID, # member.id,
-"Имя": Name, # member.name,
-
+"id": ID,       # member.id,
+"Имя": Name,    # member.name,
+"Баланс": 1000,     # Баланс
+"Комната": None,    # В какой комнате состоишь
+"Карты": None,      # Карты на руках
+"Всего_поставил": 0,    # Всего поставлено в этой игре
+"Сейчас_поставил": 0,   # На текущий момент (раунд) поставлено в игре
+"Общая_ставка": 0,      # Сколько всего денег поставил в покере
+"Общий_выигрыш": 0,     # Сколько всего денег выиграл в покере
+"Кол-во_игр": 0,    # Сколько игр всего сыграно
+"Кол-во_побед": 0,  # Сколько раз победил
+"Комбо": {},    # Наилучшие комбинации и сколько раз выпадали
+"ЧС": [],       # Чёрный список
         }
         return Player
 
@@ -56,6 +101,7 @@ class Data(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self): # когда бот подключается к серверу
         self.guild = self.bot.get_guild(MC.SERVER_GUILD) # Получает сервер по его ID
+        self.create_indexes()  # Создаем индексы при запуске бота
         t1 = threading.Thread(target=self.check_users) # Создается новый поток 
         # с целью запустить функцию check_users. Потоки позволяют выполнять несколько задач 
         # одновременно, не блокируя основной поток программы. 
