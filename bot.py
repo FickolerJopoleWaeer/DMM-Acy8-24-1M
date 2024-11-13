@@ -26,8 +26,7 @@ async def on_ready():  # бот запущен и подключился к се
     текст = 'Бот готов к работе!'
     print(текст)
     # await bot.change_presence(status=discord.Status.online, activity = discord.Activity(type=discord.ActivityType.watching, name="за тобой")) # статус бота.
-    await bot.get_channel(1285114616560488530).send(текст)  # ID канала для отправки статуса бота (нумеровать бы запуск по хорошему), а также добавить выключение бота
-
+    await bot.get_channel(1285114616560488530).send(текст)  # ID канала для отправки статуса бота
 
 # подключаем все коги  # есть также код, позволяющий сделать обновление когов через команды
 async def load():
