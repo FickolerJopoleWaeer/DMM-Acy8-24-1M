@@ -1,3 +1,5 @@
+# DB.py
+
 from discord.ext import commands
 from discord.utils import get # для поиска объектов, таких как серверы, каналы или пользователи, по атрибутам
 from .configs import MainConfig as MC # файл с ID сервера
@@ -97,6 +99,7 @@ class Data(commands.Cog):
 "Карты_стола": [],
 "Мин_ставка": 10,
 "Макс_ставка": 100,
+"Текущая_ставка": 0,
 "Тип_ставок": "Spread-Limit", # Fixed-Limit / Pot-Limit / No-Limit / Spread-Limit 
 "Текущий_раунд": "не начата", # не начата, начало, пре-флоп, флоп, тёрн, ривер
 "Текущий_ход": 0,

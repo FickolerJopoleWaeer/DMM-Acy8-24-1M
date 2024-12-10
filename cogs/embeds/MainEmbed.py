@@ -1,6 +1,7 @@
+# MainEmbed.py
+
 import discord
 from discord.ext import commands
-
 
 
 class Embed(commands.Cog):

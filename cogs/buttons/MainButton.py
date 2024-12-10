@@ -1,4 +1,5 @@
-# page_manager.py
+# MainButton.py
+
 import discord
 
 class PageManager:
