@@ -35,6 +35,17 @@ class User(Data):
     def ставка(self, сумма: int):
         Data.Player.update_one({"id": self.id}, {"$inc": {'Баланс': -сумма, 'Сейчас_поставил': сумма, 'Всего_поставил': сумма, 'Общая_ставка': сумма}})
         return self.__init__(self.id)
+
+# игрок использует /покер фолд (выходит из игры), сбрасываем поставленные деньги, карты, увеличиваем кол-во сыгранных игр на 1
+    def сброс_ставки(self):
+        Data.Player.update_one({"id": self.id}, {"$set": {'Сейчас_поставил': 0, 'Всего_поставил': 0, 'Карты': None}})
+        Data.Player.update_one({"id": self.id}, {"$inc": {'Кол-во_игр': 1}})
+        return self.__init__(self.id)
+    
+# Заносим выигрыш игроку в БД
+    def наградить(self, сумма: int):
+        Data.Player.update_one({"id": self.id}, {"$inc": {'Баланс': сумма, 'Общий_выигрыш': сумма, 'Кол-во_побед': 1}}) 
+        return self.__init__(self.id)
     
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(User(bot))
