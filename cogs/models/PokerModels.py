@@ -51,7 +51,7 @@ class Room(Data):
         Data.Room.update_one({"Название": self.Название}, {"$pull": {"Участники": member_id}})
         return self.__init__(self.Название)
 
-    # Обновление атрибута комнаты
+    # Обновление любого атрибута комнаты
     def update_field(self, field: str, value):
         """
         print(f"Обновление поля: {field}, новое значение: {value}")  # Проверка значений +

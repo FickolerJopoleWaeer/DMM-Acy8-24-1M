@@ -24,7 +24,13 @@ bot = commands.Bot(command_prefix='.', intents=intents, sync_commands_debug=True
 
 @bot.event
 async def on_ready():  # бот запущен и подключился к серверу Discord:
-    await bot.tree.sync()  # Синхронихация слеш команд с сервером
+    print(f"Бот запущен как {bot.user}")
+    try:
+        synced = await bot.tree.sync()  # Синхронизация команд
+        print(f"Синхронизировано {len(synced)} команд.")
+    except Exception as e:
+        print(f"Ошибка при синхронизации: {e}")
+    # await bot.tree.sync()  # Синхронихация слеш команд с сервером - отказался от такого способа, потому что после завершения написания кода - бот стал долго обрабатывать информацию (команды)
     текст = 'Бот готов к работе!'
     print(текст)
     # await bot.change_presence(status=discord.Status.online, activity = discord.Activity(type=discord.ActivityType.watching, name="за тобой")) # статус бота.

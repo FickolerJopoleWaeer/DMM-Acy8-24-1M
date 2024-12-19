@@ -1,0 +1,39 @@
+[33mcommit 0ec16d6a9abc79328284ed77b686f6a13b533abf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Fri Dec 13 01:06:21 2024 +0500
+
+    дописаны основные команды для игры в покер и протестированы на ошибки
+
+[33mcommit 1cab67634377ea2363ac9836401aaa51ade100f1[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Tue Dec 10 11:46:54 2024 +0500
+
+    Добавлены команды покера:
+    малый_блайнд,
+    большой_блайнд,
+    чек,
+    колл
+
+[33mcommit 219446cdaa345c45b034502cac505ae5fdd66a85[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Wed Nov 13 18:24:15 2024 +0500
+
+    Добавлены основные команды для создания комнат.
+
+[33mcommit 1f416cdd0e986d8b883b6015a34b22a9e826f1b8[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Tue Oct 8 19:25:20 2024 +0500
+
+    Добавил индексирование в БД (Подключение БД. Попытка №2)
+
+[33mcommit ce86a3ac33e845613debe87359ccfa8767bc3ace[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Tue Oct 8 17:44:00 2024 +0500
+
+    Подключаю БД, попытка №1
+
+[33mcommit 18ef99ffd2a9595b003ade326fe33bda322cbc22[m
+Author: FickolerJopoleWaeer <dmm614013@gmail.com>
+Date:   Tue Oct 1 18:58:46 2024 +0500
+
+    Всё начал сначала
